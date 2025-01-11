@@ -66,7 +66,7 @@ class ConvAE(object):
         self.recon = 0.5 * tf.reduce_sum(
             tf.pow(tf.subtract(self.x_r_ft, self.x), 2.0))
         
-        # Maximum Entropy(ME) regularization loss 
+        # Maximum Entropy (ME) regularization loss, referenced from [Maximum Entropy Subspace Clustering Network/Zhihao Peng]
         self.reg_ssc = 0.5*tf.reduce_sum(tf.multiply((self.Coef), tf.math.log(
             tf.compat.v1.clip_by_value(Coef, clip_value_min=1.0e-12, clip_value_max=1.0))))
 
@@ -333,7 +333,6 @@ if __name__ == '__main__':
     
     # load face images and labels
     data = sio.loadmat('./Data/COIL20.mat')
-    # 输入数据
     Img = data['fea']
     print(Img[:5,:3])
     Label = data['gnd']  
